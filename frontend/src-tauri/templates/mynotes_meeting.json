@@ -1,0 +1,27 @@
+{
+  "name": "MyNotes – Summary, Decisions, Action Items",
+  "description": "Combines your typed notes with the transcript. Never invents owners or deadlines.",
+  "sections": [
+    {
+      "title": "Summary",
+      "instruction": "Write a short executive summary (3-6 sentences) of what was discussed. Cover every point from the user notes. Only use facts present in the notes or transcript.",
+      "format": "paragraph"
+    },
+    {
+      "title": "Decisions",
+      "instruction": "List only decisions that were explicitly made in the notes or transcript. Do not turn proposals or opinions into decisions. If none, write 'None noted in this section.'",
+      "format": "list"
+    },
+    {
+      "title": "Action Items",
+      "instruction": "List concrete tasks that were explicitly agreed. Owner and Due must be copied from the source exactly; if not explicitly stated write 'not stated'. Never guess an owner or a date.",
+      "format": "list",
+      "item_format": "| Task | Owner | Due |\n| --- | --- | --- |"
+    },
+    {
+      "title": "Open Questions",
+      "instruction": "List questions or issues that were raised but not resolved. If none, write 'None noted in this section.'",
+      "format": "list"
+    }
+  ]
+}
