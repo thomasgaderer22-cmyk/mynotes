@@ -1,4 +1,4 @@
-# MyNotes – setup & build for Windows x64 (based on Meetily v0.4.1, MIT)
+# MyNotes - setup & build for Windows x64 (based on Meetily v0.4.1, MIT)
 #
 # Usage (PowerShell, inside the extracted MyNotes source folder):
 #   powershell -ExecutionPolicy Bypass -File .\setup-and-build-mynotes.ps1           # install tools + build installer
