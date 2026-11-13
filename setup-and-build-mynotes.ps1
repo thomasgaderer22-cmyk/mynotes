@@ -79,12 +79,14 @@ if (-not (Have 'pnpm')) { npm install -g pnpm@9.15.9 }
 Step 'Installing frontend dependencies (pnpm, frozen lockfile)'
 Push-Location $Frontend
 pnpm install --frozen-lockfile
+if ($LASTEXITCODE -ne 0) { throw 'pnpm install failed (exit ' + $LASTEXITCODE + ')' }
 Pop-Location
 
 # ---------------------------------------------------------------- llama-helper sidecar (local summaries)
 Step 'Building llama-helper sidecar (CPU)'
 Push-Location $Root
 cargo build --release -p llama-helper
+if ($LASTEXITCODE -ne 0) { throw 'llama-helper build failed (exit ' + $LASTEXITCODE + ')' }
 New-Item -ItemType Directory -Force -Path "$Frontend\src-tauri\binaries" | Out-Null
 Copy-Item "$Root\target\release\llama-helper.exe" "$Frontend\src-tauri\binaries\llama-helper-x86_64-pc-windows-msvc.exe" -Force
 Pop-Location
@@ -97,6 +99,7 @@ if ($Dev) {
 } else {
     Step 'Building MyNotes installer (first compile takes 15-40 min)'
     if ($Vulkan) { pnpm tauri:build:vulkan } else { pnpm tauri:build:cpu }
+    if ($LASTEXITCODE -ne 0) { throw 'tauri build failed (exit ' + $LASTEXITCODE + ')' }
     $out = Join-Path $Root 'target\release\bundle'
     Write-Host "`nDone. Installers:" -ForegroundColor Green
     Get-ChildItem -Recurse $out -Include *.exe, *.msi | ForEach-Object { Write-Host "   $($_.FullName)" }
